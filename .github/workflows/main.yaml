@@ -45,10 +45,6 @@ jobs:
           script: |-
             sudo apt update
             sudo apt install docker.io -y
-            sudo apt-get install zip unzip -y
-            curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-            unzip awscliv2.zip  # Extract the AWS CLI installer
-            sudo ./aws/install 
             sudo aws sts get-caller-identity
             sudo aws ecr get-login-password --region eu-west-1 | docker login --username AWS --password-stdin 296274010522.dkr.ecr.eu-west-1.amazonaws.com
             sudo $(aws ecr get-login --no-include-email --region eu-west-1);
