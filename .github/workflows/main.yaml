@@ -27,6 +27,11 @@ jobs:
         run: |
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+      - name: Await approval before deployment
+        if: success()
+        environment:
+          name: production  # Reference the environment requiring manual approval
+        run: echo "Waiting for manual approval before deploying to EC2."
       - name: Deploy docker image to EC2
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
