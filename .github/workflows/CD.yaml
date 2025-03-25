@@ -16,9 +16,7 @@ env:
   PRIVATE_SSH_KEY: ${{ secrets.AWS_SSH_KEY }}
   SERVER_PUBLIC_IP: ${{ secrets.AWS_PUBLIC_KEY }}
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
     environment:
       name: production
