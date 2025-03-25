@@ -1,10 +1,14 @@
 name: CD Pipeline
 
 on:
-  workflow_run:
-    workflows: ["CI Pipeline"]
-    types:
-      - completed
+  release:
+    type: [CD]
+  workflow_dispatch:
+    inputs:
+      releaseType:
+        description: "where do deploy"
+        required: true
+        default: 'production'
 env:
   AWS_REGION: eu-west-1
   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
